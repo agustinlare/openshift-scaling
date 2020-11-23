@@ -1,5 +1,5 @@
 bases:
-- config/overlays/defaults
+- config/overlays/default
 
 resources:
 - es-instance.yaml
