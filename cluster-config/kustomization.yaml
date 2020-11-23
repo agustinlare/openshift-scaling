@@ -1,6 +1,0 @@
-bases:
-- config/overlays/default
-
-resources:
-- source: es-instance.yaml
-  behavior: replace
