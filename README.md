@@ -13,7 +13,7 @@
 
 ### Create Cluster Autoscaler
 
-    oc apply -f https://raw.githubusercontent.com/luigiaparicio/openshift-scaling/main/cluster-config/elastic-clusterautoscaler.yaml
+    oc apply -f https://raw.githubusercontent.com/luigiaparicio/openshift-scaling/main/cluster-config/clusterautoscaler.yaml
 
 
 ### Create Machine Autoscaler
