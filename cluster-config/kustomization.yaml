@@ -2,4 +2,5 @@ bases:
 - config/overlays/default
 
 resources:
-- es-instance.yaml
+- source: es-instance.yaml
+  behavior: merge
