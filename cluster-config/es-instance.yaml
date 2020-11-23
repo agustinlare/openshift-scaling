@@ -1,0 +1,93 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch-sample
+  namespace: elastic-system
+spec:
+  auth: {}
+  http:
+    service:
+      metadata:
+        creationTimestamp: null
+      spec: {}
+    tls:
+      certificate: {}
+  version: 7.10.0
+  nodeSets:
+    - name: es-master
+      config:
+        node.roles: ["master"]
+        node.store.allow_mmap: true
+      podTemplate:
+        metadata:
+          labels:
+            app: elasticsearch-sample
+        spec:
+          containers:
+            - name: elasticsearch
+              env:
+              - name: ES_JAVA_OPTS
+                value: -Xms2g -Xmx2g
+              resources:
+                requests:
+                  memory: 4Gi # Minimo 2Gb
+                  cpu: 1
+                limits:
+                  memory: 4Gi
+                  cpu: 1
+          serviceAccountName: elasticsearch
+          nodeSelector:
+            elastic-cluster: elasticsearch-sample
+      count: 3
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 10Gi
+            storageClassName: gp2
+    - name: es-data
+      config:
+        node.roles: ["data", "ingest"]
+        node.store.allow_mmap: true
+      podTemplate:
+        metadata:
+          labels:
+            app: elasticsearch-sample
+        spec:
+          containers:
+            - name: elasticsearch
+              env:
+              - name: ES_JAVA_OPTS
+                value: -Xms6g -Xmx6g
+              resources:
+                requests:
+                  memory: 12Gi # Minimo 2Gb
+                  cpu: 1
+                limits:
+                  memory: 12Gi
+                  cpu: 1
+          serviceAccountName: elasticsearch
+          nodeSelector:
+            elastic-cluster: elasticsearch-sample
+      count: 3
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 35Gi
+            storageClassName: gp2
+  transport:
+    service:
+      metadata:
+        creationTimestamp: null
+      spec: {}
+  updateStrategy:
+    changeBudget: {}
