@@ -5,7 +5,7 @@ metadata:
 spec:
   podPriorityThreshold: -10
   resourceLimits:
-    maxNodesTotal: 24
+    maxNodesTotal: 18
     cores:
       min: 8
       max: 128
