@@ -8,4 +8,4 @@ bases:
 - github.com/luigiaparicio/openshift-elastic/manifests/eck/install
 
 resources:
-- ../../cluster-config/es-instance.yaml
+- ../../es-instance.yaml
