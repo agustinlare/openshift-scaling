@@ -6,4 +6,6 @@ namespace: elastic-system
 
 bases:
 - github.com/luigiaparicio/openshift-elastic/manifests/eck/install
+
+resources:
 - ../../cluster-config
