@@ -11,6 +11,8 @@
     curl -s https://raw.githubusercontent.com/luigiaparicio/openshift-scaling/main/cluster-config/elastic-machineset.yaml | sed -e "s/CLUSTERID/${CLUSTERID}/g" | oc apply -f -
 
 
+## Cluster and MAchine autoscaling
+
 ### Create Cluster Autoscaler
 
     oc apply -f https://raw.githubusercontent.com/luigiaparicio/openshift-scaling/main/cluster-config/clusterautoscaler.yaml
