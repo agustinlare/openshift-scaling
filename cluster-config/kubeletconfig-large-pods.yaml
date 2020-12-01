@@ -1,0 +1,12 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: set-max-pods
+spec:
+  machineConfigPoolSelector:
+    matchLabels:
+      custom-kubelet: large-pods
+  kubeletConfig:
+    maxPods: 500
+    kubeAPIBurst: 200
+    kubeAPIQPS: 100
