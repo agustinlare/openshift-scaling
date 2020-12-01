@@ -24,3 +24,8 @@
     echo $CLUSTERID
 
     curl -s https://raw.githubusercontent.com/luigiaparicio/openshift-scaling/main/cluster-config/elastic-machineautoscaler.yaml | sed -e "s/CLUSTERID/${CLUSTERID}/g" | oc apply -f -
+
+
+### Kubelet Config for 500 MaxPods
+
+    oc apply -f https://raw.githubusercontent.com/luigiaparicio/openshift-scaling/main/cluster-config/kubeletconfig-large-pods.yaml
